@@ -1,0 +1,26 @@
+{
+  "name": "codinghub_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingHUB-IIITA/CodingHUB_Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingHUB-IIITA/CodingHUB_Backend/issues"
+  },
+  "homepage": "https://github.com/CodingHUB-IIITA/CodingHUB_Backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.0"
+  }
+}
