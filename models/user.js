@@ -42,7 +42,15 @@ var userSchema=new Schema({
             }
              
         }
-    ]
+    ],
+    purchases : {
+        type: Array,
+        default: []
+       },
+       permission: {
+        type: Number,
+        default: 0
+       },
 },{timestamps: true});
 userSchema.methods={
     securePassword: function(pswrd){
