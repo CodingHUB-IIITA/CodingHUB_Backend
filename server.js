@@ -9,11 +9,19 @@ const cors = require("cors");
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
-const port=process.env.PORT || 8080
+
+const authRoutes = require("./routes/auth");
+app.use("/api", authRoutes);
+const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{
     console.log("DataBase connetced");
     console.log(`Port connected on ${port}`);
+})
+
+app.listen(port, ()=> {
+    console.log(`app is running at port ${port}`)
+
 })
 
 

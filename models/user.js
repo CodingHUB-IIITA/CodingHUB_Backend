@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-
+const crypto = require("crypto");
+const  uuidv1  = require('uuidv1');
 var Schema=mongoose.Schema;
 var userSchema=new Schema({
     name:{
@@ -71,7 +72,7 @@ userSchema.virtual("password")
     this._password=password;
     this.salt=uuidv1();
     this.encryptedpassword=this.securePassword(password);
-},{timestamps})
+},{timestamps: true})
 .get(function(){
     return this._password;
 })
