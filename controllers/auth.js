@@ -46,7 +46,7 @@ exports.signin = (req, res) => {
         }
 
         const token = jwt.sign({ id: user.id }, process.env.SECRET, {
-            expiresIn: 3600
+            expiresIn: 3600000
         });
 
         res.cookie("token", token, {
