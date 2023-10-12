@@ -16,6 +16,7 @@ exports.signup = (req, res) => {
             return res.status(400).json({ errors: err.errors });
         }
 
+        
         res.json({
             name: user.name,
             email: user.email,
@@ -46,7 +47,7 @@ exports.signin = (req, res) => {
         }
 
         const token = jwt.sign({ id: user.id }, process.env.SECRET, {
-            expiresIn: 3600000
+            expiresIn: 36000000
         });
 
         res.cookie("token", token, {
