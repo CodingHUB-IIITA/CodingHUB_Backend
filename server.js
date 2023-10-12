@@ -11,7 +11,9 @@ app.use(cookieParser());
 app.use(cors());
 
 const authRoutes = require("./routes/auth");
+const chatRoutes=require("./routes/chat");
 app.use("/api", authRoutes);
+app.use("/api",chatRoutes);
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{
