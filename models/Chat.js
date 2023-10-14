@@ -11,12 +11,23 @@ var chatSchema=new Schema({
     },
     isGroupChat: {
         type:Boolean,
-        required:true
+        required:true,
+        default:true
     },
+    
+    users: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+        }
+    ],
+  
+    
     LatestMessages:[
         {
             type:mongoose.Types.ObjectId,
-            ref:"Messsage"
+            ref:"Messsage",
+            required: false
         }
     ]
 

@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const Chat = require("../models/Chat");
 
+
+
 exports.storeNotification = (req, res) => {
     const { userId, messageId, chatId } = req.body;
 
@@ -90,3 +92,5 @@ exports.removeNotification = (req, res) => {
             res.status(500).json({ error: "Server error" });
         });
 };
+
+

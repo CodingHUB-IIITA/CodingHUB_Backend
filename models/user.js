@@ -9,11 +9,6 @@ var userSchema=new Schema({
         maxlength:32,
         trim:true
     },
-    lastname: {
-        type: String,
-        maxlength: 32,
-        trim: true
-       },
     email:{
         type:String,
         required: true,
@@ -43,15 +38,7 @@ var userSchema=new Schema({
             }
              
         }
-    ],
-    purchases : {
-        type: Array,
-        default: []
-       },
-       permission: {
-        type: Number,
-        default: 0
-       },
+    ]
 },{timestamps: true});
 userSchema.methods={
     securePassword: function(pswrd){
