@@ -11,12 +11,10 @@ exports.signup = (req, res) => {
     }
     const user = new User(req.body);
     console.log(user);
-    user.save().then((err, user) => {
+    user.save().then((user,err) => {
         if (err || !user) {
             return res.status(400).json({ errors: err.errors });
         }
-
-        
         res.json({
             name: user.name,
             email: user.email,
@@ -72,7 +70,8 @@ exports.isSignedIn = expressJwt({
 });
 
 exports.isAuthenticated = (req, res, next) => {
-    const check = req.profile && req.auth && req.profile._id == req.auth._id;
+    // console.log(req);
+    const check = req.profile && req.auth && req.profile._id == req.auth.id;
 
     if (!check) {
         return res.status(401).json({
@@ -84,6 +83,7 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
+    // console.log(req);
     if (req.profile.role == 0) {
         return res.status(401).json({
             error: "You are not admin"
