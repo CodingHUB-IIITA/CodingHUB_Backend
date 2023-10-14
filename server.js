@@ -18,10 +18,11 @@ const question = require('./routes/questionroute');
 app.use('/api', question);
 
 const chatRoutes=require("./routes/chat");
-
+const userRoutes=require("./routes/user");
 // APIs
 app.use("/api", authRoutes);
 app.use("/api",chatRoutes);
+app.use("/api",userRoutes);
 
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})

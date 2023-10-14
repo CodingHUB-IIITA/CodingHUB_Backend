@@ -25,6 +25,15 @@ var userSchema=new Schema({
         required: true,
         default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
     },
+    handles:[{
+        platform: String ,
+        handle_name: String
+    }],
+
+    role:{
+        type: Number,
+        default: 0
+    },
     notifications:[
         {
             chat: {
