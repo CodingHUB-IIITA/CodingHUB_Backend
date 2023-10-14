@@ -10,10 +10,19 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
+
 const authRoutes = require("./routes/auth");
+app.use("/api", authRoutes);
+
+const question = require('./routes/questionroute');
+app.use('/api', question);
+
 const chatRoutes=require("./routes/chat");
+
+// APIs
 app.use("/api", authRoutes);
 app.use("/api",chatRoutes);
+
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{
@@ -23,7 +32,6 @@ mongoose.connect(process.env.DATABASE,{})
 
 app.listen(port, ()=> {
     console.log(`app is running at port ${port}`)
-
 })
 
 
