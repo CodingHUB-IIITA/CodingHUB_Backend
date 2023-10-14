@@ -10,8 +10,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-const authRoutes = require("./routes/auth");
-app.use("/api", authRoutes);
+// const authRoutes = require("./routes/auth");
+// app.use("/api", authRoutes);
+
+const question = require('./routes/questionroute');
+app.use('/api', question);
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{
