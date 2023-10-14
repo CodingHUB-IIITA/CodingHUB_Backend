@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 var Schema=mongoose.Schema;
 var topicSchema=new Schema({
     name:{
@@ -20,5 +19,6 @@ var topicSchema=new Schema({
         ref: "blogs"
     }]
 })
+
 
 module.exports=mongoose.model("Topic",topicSchema);
