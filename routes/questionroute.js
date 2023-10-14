@@ -1,7 +1,15 @@
 const express = require('express');
 const Router = express.Router();
 
-const createquestion = require('../controllers/create_question');
+const {getQuestionById, createquestion,updateQuestion,searchQuestions,deleteQuestion} = require("../controllers/create_question")
 
-Router.post('/question', createquestion);
+// Params
+Router.param("questionId", getQuestionById);
+
+// Routes
+Router.post('/question/create', createquestion);
+Router.put("/question/update/:questionId",updateQuestion );
+Router.delete("/question/delete/:questionId",deleteQuestion );
+Router.get("/question/search",searchQuestions);
+
 module.exports = Router;

@@ -17,8 +17,9 @@ app.use("/api", authRoutes);
 const question = require('./routes/questionroute');
 app.use('/api', question);
 
-const authRoutes = require("./routes/auth");
 const chatRoutes=require("./routes/chat");
+
+// APIs
 app.use("/api", authRoutes);
 app.use("/api",chatRoutes);
 
@@ -31,7 +32,6 @@ mongoose.connect(process.env.DATABASE,{})
 
 app.listen(port, ()=> {
     console.log(`app is running at port ${port}`)
-
 })
 
 
