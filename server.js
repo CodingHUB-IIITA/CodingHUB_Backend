@@ -12,17 +12,15 @@ app.use(cors());
 
 
 const authRoutes = require("./routes/auth");
-app.use("/api", authRoutes);
-
 const question = require('./routes/questionroute');
-app.use('/api', question);
-
 const chatRoutes=require("./routes/chat");
-
+const topicRoutes=require("./routes/topic");
 // APIs
+app.use('/api', question);
+app.use("/api", authRoutes);
 app.use("/api", authRoutes);
 app.use("/api",chatRoutes);
-
+app.use("/api",topicRoutes);
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{

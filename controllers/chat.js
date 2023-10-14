@@ -15,35 +15,35 @@ const getChatById=(req,res,next,id)=>{
     })
 }
 //fetchchat is a middleware function to handle requests for fetching chat data for the logged-in user.
-// const fetchChat=(req,res)=>{
-//     try{
-//        Chat
-//        //find user with perfect match in a particular chat and then populate all the user details, group admin and latest message except the security 
-//        //password to the chat then sort into descending order in order to have the latest message at recent
-//        .find({users:{$eleMatch:{$eq : req.profile._id}}})
-//        .populate("users","-password")
-//        .populate("User","-password")
-//        .populate("LatestMessages")
-//        .sort({updatedAt:-1})
-//        .then((chat,err)=>{
-//         if(!chat || err){
-//             return res.json({error: err});
-//         }
-//         //if no error found
-//         chat=User
-//         .populate(chat,{
-//             path:"latestMessage.sender",
-//             select:"name pic email"
-//         })
-//         res.status(200).json(chat);
-//        })
-//     }
-//     catch(err){
-//         res.json({
-//            error:"Error while fetching chats"
-//         })
-//     }
-// }
+const fetchChat=async(req,res)=>{
+    try{
+       await Chat
+       //find user with perfect match in a particular chat and then populate all the user details, group admin and latest message except the security 
+       //password to the chat then sort into descending order in order to have the latest message at recent
+       .find({users:{$eleMatch:{$eq : req.profile._id}}})
+       .populate("users","-password")
+       .populate("User","-password")
+       .populate("LatestMessages")
+       .sort({updatedAt:-1})
+       .then((chat,err)=>{
+        if(!chat || err){
+            return res.json({error: err});
+        }
+        //if no error found
+        chat=User
+        .populate(chat,{
+            path:"latestMessage.sender",
+            select:"name pic email"
+        })
+        res.status(200).json(chat);
+       })
+    }
+    catch(err){
+        res.json({
+           error:"Error while fetching chats"
+        })
+    }
+}
 
 
 const accessChat=(req,res)=>{
@@ -197,4 +197,4 @@ const renameGroup =async (req,res) => {
 
   
  
-module.exports= {accessChat,renameGroup,getChatById,createGroupChat,addMember,deleteMember};
+module.exports= {fetchChat,accessChat,renameGroup,getChatById,createGroupChat,addMember,deleteMember};
