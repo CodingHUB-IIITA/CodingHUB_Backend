@@ -1,15 +1,18 @@
 const User = require("../models/user");
 const Chat = require("../models/Chat");
 
-
+// param
 exports.getUserById=(req,res,next,id)=>{
     User.findById(id).then((user,err)=>{
+        console.log(user);
     if(err || !user){
         return res.status(400).json({
             error:"Oops...There is not any user of this id in the database"
         });
     }
+
     req.profile=user;
+    
     next();
 });  
 };
@@ -174,4 +177,43 @@ exports.removeNotification = (req, res) => {
         });
 };
 
+exports.storeHandles = (req,res) => {
+    const userhandle = req.body.handles;
+    const old = req.profile
+    const handles_new = [...new Set([...old.handles, ...userhandle])]
+    User.findByIdAndUpdate(old._id,{
+        handles: handles_new
+    },{
+        new: true
+    }).then((resp,err)=>{
+        if(err){
+            res.status(404).json({
+                error: "Handles not updated",
+                msg: {err}
+            })
+        }
+        else{
+            res.json(resp)
+        }
+    })
+}
 
+exports.updatePermissions = (req,res) =>{
+    const new_role = req.body.role;
+    User.findByIdAndUpdate(req.body._id,{
+        role : new_role
+    },{
+        new:true
+    }
+    ).then((resp,err)=>{
+        if(err){
+            res.status(404).json({
+                error: "Permission not updated",
+                msg: {err}
+            })         
+        }
+        else{
+            res.json(resp);
+        }
+    })
+}

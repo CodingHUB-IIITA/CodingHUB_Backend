@@ -2,6 +2,7 @@ const question = require('../models/question');
 
 const getQuestionById = (req,res,next,id) =>{
     question.findById(id).then((data,err)=>{
+        console.log(data );
         if(err){
             res.status(500).json({
                 success: false,
@@ -11,6 +12,7 @@ const getQuestionById = (req,res,next,id) =>{
         }
         else{
             req.questionData = data;
+            // console.log(req);
             next();
         }
     })
@@ -80,7 +82,7 @@ const searchQuestions = (req,res) =>{
         if(err){
             res.status(500).json({
                 success: false,
-                data: 'Tag not Found',
+                data: 'Question not Found',
                 message: err.message,
             });
         }
