@@ -15,8 +15,7 @@ var topicSchema=new Schema({
          ref: "ladder"
     },
     blog:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "blogs"
+        type: String
     }]
 })
 
