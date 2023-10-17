@@ -16,6 +16,9 @@ var topicSchema=new Schema({
     },
     blog:[{
         type: String
+    }],
+    code:[{
+        type: String
     }]
 })
 
