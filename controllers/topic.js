@@ -1,6 +1,6 @@
 const Topic =require("../models/topic");
 const createTopic = (req, res) => {
-    const { name, description, ladder, blog } = req.body;
+    const { name, description, ladder, blog ,code } = req.body;
 
     // Check if name and description are provided
     if (!name || !description) {
@@ -14,7 +14,8 @@ const createTopic = (req, res) => {
         name: name,
         description: description,
         ladder: ladder,
-        blog: blog
+        blog: blog,
+        code: code
     });
 
     // Save the new topic to the database
@@ -58,6 +59,7 @@ const updateTopic=async(req,res)=>{
         name: updatedTopic.name,
         description: updatedTopic.description,
         blog:updatedTopic.blog,
+        code:updatedTopic.code,
         ladder:updatedTopic.ladder,
     },
     {new:true,})

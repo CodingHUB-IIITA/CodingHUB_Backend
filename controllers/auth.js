@@ -84,11 +84,23 @@ exports.isAuthenticated = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-    // console.log(req);
-    if (req.profile.role == 0) {
+    // console.log(req.profile);
+    if (req.profile.role != 2) {
         return res.status(401).json({
             error: "You are not admin"
         });
     }
     next();
 };
+exports.isModerator = (req, res, next) => {
+    // console.log(req.profile);
+    if (req.profile.role < 1) {
+        return res.status(401).json({
+            error: "You are not admin"
+        });
+       
+    }
+    next();
+    
+};
+
