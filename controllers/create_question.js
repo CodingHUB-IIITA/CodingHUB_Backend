@@ -15,7 +15,9 @@ const getQuestionById = (req,res,next,id) =>{
             // console.log(req);
             next();
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 const createquestion = async (req, res) => {
@@ -62,7 +64,9 @@ const updateQuestion = async (req, res) => {
         }
         res.json({updatedQuestion,questionData});
         
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 const searchQuestions = (req,res) =>{
@@ -88,7 +92,9 @@ const searchQuestions = (req,res) =>{
         }
 
         res.json(resp)
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 const deleteQuestion = (req, res) =>{
@@ -103,7 +109,9 @@ const deleteQuestion = (req, res) =>{
             message:"Deleted successfully",
             deleted: to_delete
         });
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 module.exports = {createquestion,getQuestionById,updateQuestion, searchQuestions, deleteQuestion};

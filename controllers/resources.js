@@ -10,7 +10,9 @@ exports.createResource = (req, res) => {
         else{
             res.json(resp)
         }
-    }) 
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 exports.findResourceById = (req,res,next,id) => {
@@ -26,7 +28,9 @@ exports.findResourceById = (req,res,next,id) => {
 
     req.resource = resource;
     next();
-  })
+  }).catch((err) => {
+    res.status(400).json({ errors: err.errors });
+});
 }
 
 exports.FindAllResources = (req,res) =>{
@@ -38,7 +42,9 @@ exports.FindAllResources = (req,res) =>{
         else{
             res.json(resp)
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 exports.updateResource = (req,res) => {
@@ -55,7 +61,9 @@ exports.updateResource = (req,res) => {
             })
         }
         res.json({updateresource,resource});
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 exports.deleteResource=(req,res)=>{
@@ -68,7 +76,9 @@ exports.deleteResource=(req,res)=>{
         else{
            return res.json({message:"Deleted Successfully",deleted: deletion})
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 

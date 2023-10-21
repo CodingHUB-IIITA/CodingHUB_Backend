@@ -21,6 +21,8 @@ exports.signup = (req, res) => {
             email: user.email,
             id: user.id
         });
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
     });
 };
 
