@@ -80,7 +80,9 @@ var isChat=Chat.find({isGroupChat:false,$and:[{users:{$eleMatch:{$eq:req.profile
         else{
             return res.status(404);
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 //creating a middleware function to create group chat which require an array of users and chat name as essential parameters
 const createGroupChat = (req, res) => {
