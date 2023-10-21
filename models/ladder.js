@@ -11,8 +11,5 @@ var ladderSchema=new Schema({
             ref: "question"
         }
     ],
-    link: {
-        type: String
-    },
 });
 module.exports=mongoose.model("ladder",ladderSchema);
