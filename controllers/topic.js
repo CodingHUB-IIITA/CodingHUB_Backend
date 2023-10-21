@@ -50,7 +50,9 @@ Topic.findById(id)
         req.topicdata=topic;
         next();
     }
-})
+}).catch((err) => {
+    res.status(400).json({ errors: err.errors });
+});
 }
 const updateTopic=async(req,res)=>{
     const {updatedTopic}=req.body;
@@ -70,7 +72,9 @@ const updateTopic=async(req,res)=>{
             })
         }
         res.json({updatedTopic,topicdata});
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 const deleteTopic=(req,res)=>{
     const deletion=req.topicdata;
@@ -82,7 +86,9 @@ const deleteTopic=(req,res)=>{
         else{
            return res.json({message:"Deleted Successfully",deleted: deletion})
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 const searchTopic=(req,res)=>{
 const {name,description,ladder,blog}=req.body;
@@ -110,6 +116,8 @@ Topic.find(qu)
         console.log("Found topic");
         res.json(topic);
     }
-})
+}).catch((err) => {
+    res.status(400).json({ errors: err.errors });
+});
 }
 module.exports={createTopic,updateTopic,deleteTopic,getTopicById,searchTopic};

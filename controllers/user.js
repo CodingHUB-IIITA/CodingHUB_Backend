@@ -14,6 +14,8 @@ exports.getUserById=(req,res,next,id)=>{
     req.profile=user;
     
     next();
+}).catch((err) => {
+    res.status(400).json({ errors: err.errors });
 });  
 };
 
@@ -34,7 +36,9 @@ exports.getAllusers=(req,res)=>{
         res.json({
             users
         })
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 };
 
 exports.updateUser = async (req, res) => {
@@ -84,7 +88,9 @@ exports.updateUser = async (req, res) => {
         }
         res.json({updatedUser,old});
         
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 exports.storeNotification = (req, res) => {
@@ -110,6 +116,8 @@ exports.storeNotification = (req, res) => {
             });
         }
         res.sendStatus(204); 
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
     });
 };
 
@@ -195,7 +203,9 @@ exports.storeHandles = (req,res) => {
         else{
             res.json(resp)
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
 exports.updatePermissions = (req,res) =>{
@@ -215,6 +225,8 @@ exports.updatePermissions = (req,res) =>{
         else{
             res.json(resp);
         }
-    })
+    }).catch((err) => {
+        res.status(400).json({ errors: err.errors });
+    });
 }
 
