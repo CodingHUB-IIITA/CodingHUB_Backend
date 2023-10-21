@@ -18,6 +18,8 @@ const chatRoutes=require("./routes/chat");
 const topicRoutes=require("./routes/topic");
 
 const userRoutes=require("./routes/user");
+
+const resourceRoutes = require("./routes/resources");
 // APIs
 app.use('/api', question);
 app.use("/api", authRoutes);
@@ -25,6 +27,7 @@ app.use("/api", authRoutes);
 app.use("/api",chatRoutes);
 app.use("/api",topicRoutes);
 app.use("/api",userRoutes);
+app.use("/api",resourceRoutes);
 const port=process.env.PORT || 8000
 mongoose.connect(process.env.DATABASE,{})
 .then(()=>{
